@@ -1,0 +1,14 @@
+app_front:
+    resource: "@AppBundle/Controller/Front"
+    type:     annotation
+    host: '%host_front%'
+
+app_admin:
+    resource: "@AppBundle/Controller/Admin"
+    host: '%host_admin%'
+
+admin_login_check:
+    path: /login-check
+
+admin_logout:
+    path: /logout
