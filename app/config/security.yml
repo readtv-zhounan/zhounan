@@ -1,0 +1,31 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        AppBundle\Entity\Admin:
+            algorithm: bcrypt
+    providers:
+        admin_provider:
+            entity:
+                class: AppBundle:Admin
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            pattern: ^/
+            host: ^%host_admin%$
+            form_login:
+                use_forward: true
+                login_path: admin_login
+                check_path: admin_login_check
+            provider: admin_provider
+            logout:
+                path: admin_logout
+            remember_me:
+                name: REMEBERME_ADMIN
+                secret: '%secret%'
+                lifetime: 432000

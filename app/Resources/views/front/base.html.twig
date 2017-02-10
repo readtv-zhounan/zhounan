@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% set home_url = path('front_home') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter="scssphp" output="css/front.css"
+        "assets/css/front/*"
+    %}
+        <link href="{{ asset_url }}" rel="stylesheet">
+    {% endstylesheets %}
+{% endblock stylesheets %}
