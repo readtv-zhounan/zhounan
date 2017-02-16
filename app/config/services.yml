@@ -10,3 +10,12 @@ services:
             - '@security.password_encoder'
         tags:
             - { name: doctrine.event_listener, event: onFlush }
+
+    menu_renderer.sidebar:
+        class: AppBundle\Menu\Renderer\Sidebar
+        arguments:
+            - '@knp_menu.matcher'
+            - '%knp_menu.renderer.list.options%'
+            - '%kernel.charset%'
+        tags:
+            - { name: knp_menu.renderer, alias: sidebar }

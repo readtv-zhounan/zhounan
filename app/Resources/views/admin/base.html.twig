@@ -2,8 +2,7 @@
 
 {% set home_url = path('admin_home') %}
 
-{% block logo %}后台管理{% endblock %}
-{% block title %}后台管理{% endblock %}
+{% block title %}blog后台管理{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -15,63 +14,12 @@
     {% endstylesheets %}
 {% endblock stylesheets %}
 
-{% block body %}
-    {% block nav_top %}
-        <div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span>Menu</span>
-                    </button>
-                    <a href="{{ home_url }}" class="navbar-brand hidden-md hidden-lg">{{ block('logo') }}</a>
-                </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse">
-                    {% if app.user %}
-                        <ul class="nav navbar-nav pull-right">
-                            <li class="dropdown pull-right">
-                                <a href="{{ logout_path('admin') }}"><i class="fa fa-sign-out"></i> 退出</a>
-                            </li>
-                        </ul>
-                    {% endif %}
-                </nav>
-            </div>
-        </div>
-    {% endblock nav_top %}
+{% block scripts %}
+    {{ parent() }}
 
-    {% block header %}
-        <header>
-            <div class="container">
-                <div class="col-md-4">
-                    {% block header_left %}
-                        <div class="logo">
-                            <h1><a href="{{ home_url }}">{{ block('logo') }}</a></h1>
-                            <p class="meta">{{ block('slogan') }}</p>
-                        </div>
-                    {% endblock header_left %}
-                </div>
-                <div class="col-md-4">
-                    {{ block('header_middle') }}
-                </div>
-                <div class="col-md-4">
-                    {{ block('header_right') }}
-                </div>
-            </div>
-        </header>
-    {% endblock header %}
-
-    <div class="content">
-        {{ block('body_content') }}
-    </div>
-
-    {% block footer %}
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copy">Copyright &copy; {{ 'now'|date('Y') }} | <a href="{{ home_url }}">首页</a></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    {% endblock footer %}
-{% endblock body %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    {% javascripts 'assets/js/admin/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock scripts %}
