@@ -38,6 +38,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - Form/bootstrap_3_horizontal_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
@@ -73,6 +75,10 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+            uploadable: true
+    uploadable:
+        default_file_path: "%kernel.root_dir%/../web/uploads"
+        validate_writable_directory: true
 
 assetic:
     debug:          '%kernel.debug%'

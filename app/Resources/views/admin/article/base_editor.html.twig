@@ -1,0 +1,29 @@
+{% extends 'admin/layout_sidebar.html.twig' %}
+
+{% block head_title %}文章管理{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/vendor/editor.md/css/editormd.min.css') }}">
+{% endblock stylesheets %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/editor.md/editormd.min.js') }}"></script>
+    <script>
+        var testEditor;
+        $(function() {
+            var editor = editormd("editormd", {
+                width: "100%",
+                height: 740,
+                path : "{{ asset('assets/vendor/editor.md/lib/') }}",
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "git", "png"],
+                // imageUploadUrL: #
+            });
+
+        })
+    </script>
+{% endblock scripts %}

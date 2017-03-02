@@ -23,6 +23,14 @@ class Admin
             ],
         ]);
 
+        $menu->addChild('article', [
+            'route' => 'admin_article_index',
+            'label' => '文章管理',
+            'extras' => [
+                'icon' => 'file-text-o',
+            ],
+        ]);
+
         return $menu;
     }
 }

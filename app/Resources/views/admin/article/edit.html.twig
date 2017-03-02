@@ -1,0 +1,71 @@
+{% extends 'admin/article/base_editor.html.twig' %}
+
+{% block page_wrapper %}
+    <div class="col-md-8">
+        <div class="widget wgreen">
+            <div class="widget-content">
+                <div class="padd">
+                    {{ form_start(editForm) }}
+                        {{ form_row(editForm.title, {'label': '标题'}) }}
+                        {{ form_row(editForm.introduction, {'label': '简介'}) }}
+                        {{ form_row(editForm.tags, {'label': '标签'}) }}
+                        {{ form_row(editForm.picture.file, {'label': '介绍图片'}) }}
+                        <div class="form-group">
+                            {{ form_label(editForm.fileName, '文章内容') }}
+                            <div class="col-lg-10">
+                                <div id="editormd">
+                                    {{ form_widget(editForm.fileName) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-block btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    {{ form_end(editForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="widget wgreen">
+            <div class="widget-head">
+                <div class="pull-left">
+                    其他操作
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-content">
+                <div class="padd">
+                    <button class="btn btn-danger" data-target="#article-delete" data-toggle="modal" type="button">
+                        <i class="fa fa-trash"></i> 删除
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock page_wrapper %}
+
+{% block footer %}
+    {{ parent() }}
+    <div id="article-delete" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">删除数据</h4>
+                </div>
+                <div class="modal-body">
+                    <p>确定要删除 {{ article.title }} 这篇文章么？</p>
+                </div>
+                <div class="modal-footer">
+                    {{ form_start(deleteForm) }}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-danger" type="submit">删除</button>
+                    {{ form_end(deleteForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock footer %}

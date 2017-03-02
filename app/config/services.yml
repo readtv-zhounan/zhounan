@@ -19,3 +19,19 @@ services:
             - '%kernel.charset%'
         tags:
             - { name: knp_menu.renderer, alias: sidebar }
+
+    app.form.type.uploaded:
+        class: AppBundle\Form\Type\UploadedFileType
+        arguments:
+            - '@stof_doctrine_extensions.uploadable.manager'
+        tags:
+            - { name: form.type }
+
+    app.form.type.article:
+        class: AppBundle\Form\Type\ArticleType
+        arguments:
+            - '@=service("doctrine").getRepository("AppBundle:Tag")'
+            - '@=service("kernel").getRootDir()'
+            - '@=service("request_stack").getCurrentRequest().attributes.get("article")'
+        tags:
+            - { name: form.type }
