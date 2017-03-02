@@ -1,0 +1,34 @@
+{% extends 'admin/article/base_editor.html.twig' %}
+
+{% block head_title %}文章管理{% endblock %}
+
+{% block page_wrapper %}
+    <div class="col-md-8">
+        <div class="widget wgreen">
+            <div class="widget-content">
+                <div class="padd">
+                    {{ form_errors(form) }}
+                    {{ form_start(form) }}
+                        {{ form_row(form.title, {'label': '标题'}) }}
+                        {{ form_row(form.introduction, {'label': '简介'}) }}
+                        {{ form_row(form.tags, {'label': '标签'}) }}
+                        {{ form_row(form.picture.file, {'label': '介绍图片'}) }}
+                        <div class="form-group">
+                            {{ form_label(form.fileName, '文章内容') }}
+                            <div class="col-lg-10">
+                                <div id="editormd">
+                                    {{ form_widget(form.fileName) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-block btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock page_wrapper %}
