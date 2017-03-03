@@ -7,6 +7,8 @@
 {% block stylesheets %}
     {{ parent() }}
 
+    <link href="//cdn.bootcss.com/select2/3.5.2/select2.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css" rel="stylesheet">
     {% stylesheets filter="scssphp" output="css/admin.css"
         "assets/css/admin/*"
     %}
@@ -19,6 +21,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="//cdn.bootcss.com/select2/3.5.2/select2.min.js"></script>
     {% javascripts 'assets/js/admin/*' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

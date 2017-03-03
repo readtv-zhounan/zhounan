@@ -32,3 +32,13 @@
         </div>
     </div>
 {% endblock page_wrapper %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script>
+        $('#{{ form.tags.vars.id }}').select2({
+            tags: {{ tags|json_encode|raw }}
+        })
+    </script>
+{% endblock scripts %}
