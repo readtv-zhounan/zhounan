@@ -36,6 +36,7 @@ class ArticleController extends Controller
     public function newAction(Request $request)
     {
         $form = $this->createForm(ArticleType::class);
+        $tags = $this->getTags();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -50,6 +51,7 @@ class ArticleController extends Controller
 
         return $this->render('admin/article/new.html.twig', [
             'form' => $form->createView(),
+            'tags' => $tags,
         ]);
     }
 
@@ -63,6 +65,8 @@ class ArticleController extends Controller
         ]);
         $deleteForm = $this->createDeleteForm($article->getId());
 
+        $tags = $this->getTags();
+
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
             $em = $this->get('doctrine.orm.entity_manager');
@@ -74,6 +78,7 @@ class ArticleController extends Controller
         }
 
         return $this->render('admin/article/edit.html.twig', [
+            'tags' => $tags,
             'article' => $article,
             'editForm' => $editForm->createView(),
             'deleteForm' => $deleteForm->createView(),
@@ -112,5 +117,17 @@ class ArticleController extends Controller
             ->setMethod('PATCH')
             ->getForm()
         ;
+    }
+
+    private function getTags()
+    {
+        $tags = $this->getDoctrine()->getRepository('AppBundle:Tag')
+            ->createQueryBuilder('t')
+            ->select('t.name')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return array_column($tags, 'name');
     }
 }
